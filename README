@@ -1,0 +1,35 @@
+Json Handler
+
+Notes on usages:
+ My reason for creating this handler is the several issues connected with using
+  the php-json library for php. The main issue being the lack of predictability
+  in the library, and the secondary issue the lack of proper exception handling.
+  I asked myself why I wouldn't create the whole thing as a static class with
+  static methods, and the answer came back "Because I dislike static classes which
+  don't actually need to be static". This Json Handler is one of them. I like
+  having a constructor to test if you have the proper library installed, and I
+  like having to instance it in order to use it. If you disagree, feel free to
+  remake it as a static class.
+  
+ It's worth mentioning that my decision to typecast all returns of the decode
+  method to an array, was not made lightly. Arguments exist both for an against,
+  but the argument i valued the most when i made the decision was that i wanted
+  predictability. A lot of the time predictability is all you need in order to
+  create good code going forward, and lack of predictability certainly causes
+  more bugs than typecasting everything to an assoc array.
+ 
+Questions and comments:
+ Please feel free to direct any questions or comments to my email, or leave them
+  in my git inbox. I wont promise ill answer all of them, but ill answer as many
+  as i get around to.
+  
+Example:
+    ---
+    use Core/Json/JsonHandler;
+
+    $json = {"test":{"info":"Ipsus catchus"},"more":null};
+    $jsonHandler = new JsonHandler();
+    $data = $jsonHandler->decode($json);
+    ---
+    
+ 
